@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en-US">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>Anemist</title>
+  <style>
+    ul {
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, 200px);
+      gap: 10px;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    li {
+      display: inline-block;
+    }
+
+    li img {
+      width: 200px;
+      height: 300px;
+      object-fit: cover;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Anemist</h1>
+  <h2>View entries ({{ entries.len() }})</h2>
+  <ul>
+    {% for entry in entries %}
+    <li>
+      <img src="image/{{ entry.id() }}" title="[{{ entry.id() }}] {{ entry.title() }}">
+    </li>
+    {% endfor %}
+  </ul>
+  <h2>Manage entries</h2>
+  <h3>Create</h3>
+  <form method="post" action="/create">
+    <label for="id">ID:</label>
+    <input type="number" id="id" name="id" required>
+    <button type="submit">Submit</button>
+  </form>
+  <h3>Delete</h3>
+  <form method="post" action="/delete">
+    <label for="id">ID:</label>
+    <input type="number" id="id" name="id" required>
+    <button type="submit">Submit</button>
+  </form>
+  <h3>Save data</h3>
+  <form method="post" action="/save">
+    <button type="submit">Save</button>
+  </form>
+  <h3>Load data</h3>
+  <form method="post" action="/load">
+    <button type="submit">Load</button>
+  </form>
+</body>
+
+</html>
